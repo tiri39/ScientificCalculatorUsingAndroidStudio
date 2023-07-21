@@ -4,13 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.scientificcalculator.R;
+import java.util.Vector;
+import java.lang.Math;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -136,65 +136,25 @@ public class MainActivity extends AppCompatActivity {
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(edittext == null)
-                {
-                    edittext.setText("");
-                }
-                else
-                {
-                    mvalueOne = Float.parseFloat(edittext.getText()+"");
-                    addition = true;
-                    edittext.setText("+");
-                    edittext.setText(null);
-                }
+                edittext.setText(edittext.getText()+"+");
             }
         });
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(edittext == null)
-                {
-                    edittext.setText("");
-                }
-                else
-                {
-                    mvalueOne = Float.parseFloat(edittext.getText()+"");
-                    subtract = true;
-                    edittext.setText("-");
-                    edittext.setText(null);
-                }
+                edittext.setText(edittext.getText()+"-");
             }
         });
         btnInto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(edittext == null)
-                {
-                    edittext.setText("");
-                }
-                else
-                {
-                    mvalueOne = Float.parseFloat(edittext.getText()+"");
-                    multiplication = true;
-                    edittext.setText("*");
-                    edittext.setText(null);
-                }
+                edittext.setText(edittext.getText()+"*");
             }
         });
         btnDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(edittext == null)
-                {
-                    edittext.setText("");
-                }
-                else
-                {
-                    mvalueOne = Float.parseFloat(edittext.getText()+"");
-                    division = true;
-                    edittext.setText("/");
-                    edittext.setText(null);
-                }
+                edittext.setText(edittext.getText()+"/");
             }
         });
         btnPer.setOnClickListener(new View.OnClickListener() {
@@ -279,43 +239,58 @@ public class MainActivity extends AppCompatActivity {
         btnEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mvalueTwo = Float.parseFloat(edittext.getText()+"");
-                if(addition == true)
-                {
-                    edittext.setText(mvalueOne+mvalueTwo+"");
-                    addition = false;
-                }
-                else if(subtract == true)
-                {
-                    edittext.setText(mvalueOne-mvalueTwo+"");
-                    subtract = false;
-                }
-                else if(multiplication == true)
-                {
-                    edittext.setText(mvalueOne*mvalueTwo+"");
-                    multiplication = false;
-                }
-                else if(division == true)
-                {
-                    edittext.setText(mvalueOne/mvalueTwo+"");
-                    division = false;
-                }
-                else if(percent == true)
-                {
-                    edittext.setText(mvalueOne/100+"");
-                    division = false;
-                }
-                else if(pow == true)
-                {
-                    double res = 1.0;
-                    for(int i = 1; i <= mvalueTwo; i++) res *= mvalueOne;
-                    edittext.setText(res+"");
-                    pow = false;
-                }
-            }
-        });
-    }
 
+                Editable str = edittext.getText();
+                Vector<Double> v= new Vector<Double>();
+                Vector<Character> v1= new Vector<Character>();
 
+                StringBuilder s = new StringBuilder("");
+                for(int i = 0; i < str.length(); i++)
+                {
+                    if(str.charAt(i) == '+' || str.charAt(i) == '-' || str.charAt(i) == '*' || str.charAt(i) == '/')
+                    {
+                        v1.add(str.charAt(i));
+                        if(s.length() > 0) v.add(Double.parseDouble(String.valueOf(s)));
+                        s = new StringBuilder("");
+                    }
+                    else
+                    {
+                        s.append(str.charAt(i));
+                    }
+                }
+                v.add(Double.parseDouble(String.valueOf(s)));
 
+                double result = 0.0;
+                int j = 0;
+                boolean ok = true;
+                for(int i = 0; i < v.size(); i++)
+                {
+                    if(v.size() != v1.size() && ok)
+                    {
+                        result += v.get(i);
+                        ok = false;
+                        continue;
+                    }
+
+                    if(v1.get(j) == '+')
+                    {
+                        result += v.get(i);
+                    }
+                    else if(v1.get(j) == '-')
+                    {
+                        result -= v.get(i);
+                    }
+                    else if(v1.get(j) == '*')
+                    {
+                        result *= v.get(i);
+                    }
+                    else if(v1.get(j) == '/')
+                    {
+                        result /= v.get(i);
+                    }
+                    j++;
+
+                }
+
+                edittext.setText(result + "");
 }
