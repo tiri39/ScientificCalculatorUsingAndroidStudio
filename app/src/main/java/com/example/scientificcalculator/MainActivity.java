@@ -2,295 +2,369 @@ package com.example.scientificcalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-
-import java.util.Vector;
-import java.lang.Math;
-
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-    Button btnAC, btnPer, btn9, btn8, btn7, btn6, btn5, btn4, btn3, btn2, btn1, btn0, btnMinus, btnPlus, btnDiv, btnInto;
-    Button btnEqual, btnDot, btnSin, btnCos, btnTan, btnFact, btnLog, btnLn, btnPow, btnRoot;
-    EditText edittext;
-    boolean addition, subtract, multiplication, division, percent, sin, cos, tan, fact, pow;
-    float mvalueOne, mvalueTwo;
+    Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b0, bdot, bpi, bequal, bmin, bplus, bdiv, bmul, bminus, blog, bac, bc, bb1, bb2, bln, bsin, bcos, btan, binv, bsqrt, bsquare, bfact;
+    TextView tvsec, tvmain;
+    String pi = "3.14159265";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edittext = findViewById(R.id.edTxt);
-        btnLog = findViewById(R.id.buttonLog);
-        btnLn = findViewById(R.id.buttonLn);
-        btnPow = findViewById(R.id.buttonPow);
-        btnRoot = findViewById(R.id.buttonRoot);
-        btnSin = findViewById(R.id.buttonSin);
-        btnCos = findViewById(R.id.buttonCos);
-        btnTan = findViewById(R.id.buttonTan);
-        btnFact = findViewById(R.id.buttonFact);
-        btnAC = findViewById(R.id.buttonAC);
-        btnPer = findViewById(R.id.buttonPer);
-        btn9 = findViewById(R.id.button9);
-        btn8 = findViewById(R.id.button8);
-        btn7 = findViewById(R.id.button7);
-        btn6 = findViewById(R.id.button6);
-        btn5 = findViewById(R.id.button5);
-        btn4 = findViewById(R.id.button4);
-        btn3 = findViewById(R.id.button3);
-        btn2 = findViewById(R.id.button2);
-        btn1 = findViewById(R.id.button1);
-        btn0 = findViewById(R.id.button0);
-        btnMinus = findViewById(R.id.buttonMinus);
-        btnPlus = findViewById(R.id.buttonPlus);
-        btnInto = findViewById(R.id.buttonInto);
-        btnDiv = findViewById(R.id.buttonDivision);
-        btnEqual = findViewById(R.id.buttonEqual);
-        btnDot = findViewById(R.id.buttonDot);
+        b1 = findViewById(R.id.b1);
+        b2 = findViewById(R.id.b2);
+        b3 = findViewById(R.id.b3);
+        b4 = findViewById(R.id.b4);
+        b5 = findViewById(R.id.b5);
+        b6 = findViewById(R.id.b6);
+        b7 = findViewById(R.id.b7);
+        b8 = findViewById(R.id.b8);
+        b9 = findViewById(R.id.b9);
+        b0 = findViewById(R.id.b0);
+        bac = findViewById(R.id.bac);
+        bc = findViewById(R.id.bc);
+        bb1 = findViewById(R.id.bb1);
+        bb2 = findViewById(R.id.bb2);
+        bpi = findViewById(R.id.bpi);
+        bdot = findViewById(R.id.bdot);
+        bequal = findViewById(R.id.bequal);
+        bplus = findViewById(R.id.bplus);
+        bminus = findViewById(R.id.bminus);
+        bmul = findViewById(R.id.bmul);
+        bdiv = findViewById(R.id.bdiv);
+        binv = findViewById(R.id.binv);
+        bsqrt = findViewById(R.id.bsqrt);
+        bsquare = findViewById(R.id.bsquare);
+        bfact = findViewById(R.id.bfact);
+        bln = findViewById(R.id.bln);
+        bsin = findViewById(R.id.bsin);
+        bcos = findViewById(R.id.bcos);
+        btan = findViewById(R.id.btan);
+        blog = findViewById(R.id.blog);
+
+        tvmain = findViewById(R.id.tvmain);
+        tvsec = findViewById(R.id.tvsec);
 
 
-
-
-
-        btn0.setOnClickListener(new View.OnClickListener() {
+        //OnClickListener
+        b1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"0");
-            }
-        });
-
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"1");
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "1");
             }
         });
 
-        btn2.setOnClickListener(new View.OnClickListener() {
+        b2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"2");;
-            }
-        });
-        btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"3");
-            }
-        });
-        btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"4");
-            }
-        });
-        btn5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"5");
-            }
-        });
-        btn6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"6");
-            }
-        });
-        btn7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"7");
-            }
-        });
-        btn8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"8");
-            }
-        });
-        btn9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"9");
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "2");
             }
         });
 
-        btnDot.setOnClickListener(new View.OnClickListener() {
+        b3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+".");
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "3");
             }
         });
-        btnAC.setOnClickListener(new View.OnClickListener() {
+
+        b4.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                edittext.setText("");
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "4");
             }
         });
-        btnPlus.setOnClickListener(new View.OnClickListener() {
+
+        b5.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"+");
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "5");
             }
         });
-        btnMinus.setOnClickListener(new View.OnClickListener() {
+
+        b6.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"-");
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "6");
             }
         });
-        btnInto.setOnClickListener(new View.OnClickListener() {
+
+        b7.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"*");
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "7");
             }
         });
-        btnDiv.setOnClickListener(new View.OnClickListener() {
+
+        b8.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                edittext.setText(edittext.getText()+"/");
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "8");
             }
         });
-        btnPer.setOnClickListener(new View.OnClickListener() {
+
+        b9.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(edittext == null)
-                {
-                    edittext.setText("");
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "9");
+            }
+        });
+
+        b0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "0");
+            }
+        });
+
+        bdot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + ".");
+            }
+        });
+
+        bac.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText("");
+                tvsec.setText("");
+            }
+        });
+
+        bc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String val = tvmain.getText().toString();
+                val = val.substring(0, val.length() - 1);
+                tvmain.setText(val);
+            }
+        });
+
+        bplus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "+");
+            }
+        });
+
+        bminus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "-");
+            }
+        });
+
+        bdiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "÷");
+            }
+        });
+
+        bmul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "×");
+            }
+        });
+
+        bsqrt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String val = tvmain.getText().toString();
+                double r = Math.sqrt(Double.parseDouble(val));
+                tvmain.setText(String.valueOf(r));
+            }
+        });
+
+
+        bb1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "(");
+            }
+        });
+
+        bb2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + ")");
+            }
+        });
+
+        bpi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvsec.setText(bpi.getText());
+                tvmain.setText(tvmain.getText() + pi);
+            }
+        });
+
+        bsin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "sin");
+            }
+        });
+
+        bcos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "cos");
+            }
+        });
+
+        btan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "tan");
+            }
+        });
+
+        binv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "^" + "(-1)");
+            }
+        });
+
+        bfact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int val = Integer.parseInt(tvmain.getText().toString());
+                int fact = factorial(val);
+                tvmain.setText(String.valueOf(fact));
+                tvsec.setText(val + "!");
+            }
+
+        });
+
+        bsquare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double d = Double.parseDouble(tvmain.getText().toString());
+                double square = d * d;
+                tvmain.setText(String.valueOf(square));
+                tvsec.setText(d + "²");
+            }
+        });
+
+        bln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "ln");
+            }
+        });
+
+        blog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tvmain.setText(tvmain.getText() + "log");
+            }
+        });
+
+        bequal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String val = tvmain.getText().toString();
+                String replacedstr = val.replace('÷', '/').replace('×', '*');
+                double result = eval(replacedstr);
+                tvmain.setText((String.valueOf(result)));
+                tvsec.setText(val);
+
+            }
+        });
+
+    }
+
+    //Factorial function
+    int factorial(int n) {
+        return (n == 1 || n == 0) ? 1 : n * factorial(n - 1);
+    }
+
+    //eval function
+    public static double eval(final String str) {
+        return new Object() {
+            int pos = -1, ch;
+
+            void nextChar() {
+                ch = (++pos < str.length()) ? str.charAt(pos) : -1;
+            }
+
+            boolean eat(int charToEat) {
+                while (ch == ' ') nextChar();
+                if (ch == charToEat) {
+                    nextChar();
+                    return true;
                 }
-                else
-                {
-                    mvalueOne = Float.parseFloat(edittext.getText()+"");
-                    percent = true;
-                    edittext.setText(edittext.getText()+"%");
+                return false;
+            }
+
+            double parse() {
+                nextChar();
+                double x = parseExpression();
+                if (pos < str.length()) throw new RuntimeException("Unexpected: " + (char) ch);
+                return x;
+            }
+
+            double parseExpression() {
+                double x = parseTerm();
+                for (; ; ) {
+                    if (eat('+')) x += parseTerm(); //Addition
+                    else if (eat('-')) x -= parseTerm(); //Subtraction
+                    else return x;
                 }
             }
-        });
 
-        btnSin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(edittext == null)
-                {
-                    edittext.setText("");
-                }
-                else
-                {
-                    mvalueOne = Float.parseFloat(edittext.getText()+"");
-                    sin = true;
-                    edittext.setText("sin(" + edittext.getText() + ")");
+            double parseTerm() {
+                double x = parseFactor();
+                for (; ; ) {
+                    if (eat('*')) x *= parseTerm(); //Multiplication
+                    else if (eat('/')) x /= parseTerm(); //Division
+                    else return x;
                 }
             }
-        });
-        btnCos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(edittext == null)
-                {
-                    edittext.setText("");
+
+            double parseFactor() {
+
+                if (eat('+')) return parseFactor(); //Unary Plus
+                if (eat('-')) return -parseFactor(); //Unary Minus
+
+                double x;
+                int startPos = this.pos;
+                if (eat('(')) { // Parentheses
+                    x = parseExpression();
+                    eat(')');
+                } else if ((ch >= '0' && ch <= '9') || ch == '.') { //Numbers
+                    while ((ch >= '0' && ch <= '9') || ch == '.') nextChar();
+                    x = Double.parseDouble(str.substring(startPos, this.pos));
+                } else if ((ch >= 'a' && ch <= 'z') || ch == '.') { //Functions
+                    while ((ch >= 'a' && ch <= 'z') || ch == '.') nextChar();
+                    String func = str.substring(startPos, this.pos);
+                    x = parseFactor();
+                    if (func.equals("sqrt")) x = Math.sqrt(x);
+                    else if (func.equals("sin")) x = Math.sin(Math.toRadians(x));
+                    else if (func.equals("cos")) x = Math.cos(Math.toRadians(x));
+                    else if (func.equals("tan")) x = Math.tan(Math.toRadians(x));
+                    else if (func.equals("log")) x = Math.log10(x);
+                    else if (func.equals("ln")) x = Math.log(x);
+                    else throw new RuntimeException("Unknown function: " + func);
+
+                } else {
+                    throw new RuntimeException("Unexpected: " + (char) ch);
                 }
-                else
-                {
-                    mvalueOne = Float.parseFloat(edittext.getText()+"");
-                    sin = true;
-                    edittext.setText("cos(" + edittext.getText() + ")");
-                }
+                if (eat('^')) x = Math.pow(x, parseFactor()); //Exponentiation
+                return x;
             }
-        });
 
-        btnTan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(edittext == null)
-                {
-                    edittext.setText("");
-                }
-                else
-                {
-                    mvalueOne = Float.parseFloat(edittext.getText()+"");
-                    sin = true;
-                    edittext.setText("tan(" + edittext.getText() + ")");
-                }
-            }
-        });
+        }.parse();
 
-        btnPow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(edittext == null)
-                {
-                    edittext.setText("");
-                }
-                else
-                {
-                    mvalueOne = Float.parseFloat(edittext.getText()+"");
-                    pow = true;
-                    edittext.setText(edittext.getText()+"pow");
-                }
-            }
-        });
-
-        btnEqual.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Editable str = edittext.getText();
-                Vector<Double> v= new Vector<Double>();
-                Vector<Character> v1= new Vector<Character>();
-
-                StringBuilder s = new StringBuilder("");
-                for(int i = 0; i < str.length(); i++)
-                {
-                    if(str.charAt(i) == '+' || str.charAt(i) == '-' || str.charAt(i) == '*' || str.charAt(i) == '/')
-                    {
-                        v1.add(str.charAt(i));
-                        if(s.length() > 0) v.add(Double.parseDouble(String.valueOf(s)));
-                        s = new StringBuilder("");
-                    }
-                    else
-                    {
-                        s.append(str.charAt(i));
-                    }
-                }
-                v.add(Double.parseDouble(String.valueOf(s)));
-
-                double result = 0.0;
-                int j = 0;
-                boolean ok = true;
-                for(int i = 0; i < v.size(); i++)
-                {
-                    if(v.size() != v1.size() && ok)
-                    {
-                        result += v.get(i);
-                        ok = false;
-                        continue;
-                    }
-
-                    if(v1.get(j) == '+')
-                    {
-                        result += v.get(i);
-                    }
-                    else if(v1.get(j) == '-')
-                    {
-                        result -= v.get(i);
-                    }
-                    else if(v1.get(j) == '*')
-                    {
-                        result *= v.get(i);
-                    }
-                    else if(v1.get(j) == '/')
-                    {
-                        result /= v.get(i);
-                    }
-                    j++;
-
-                }
-
-                edittext.setText(result + "");
+    }
 }
